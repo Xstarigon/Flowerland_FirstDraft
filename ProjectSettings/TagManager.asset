@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Page
   - Flowers
+  - ReachTool
+  - Flashlight
+  - CreepyMan
   layers:
   - Default
   - TransparentFX
