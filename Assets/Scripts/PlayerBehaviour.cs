@@ -39,6 +39,7 @@ public class PlayerBehaviour : MonoBehaviour
     public AudioClip damageNoise;
     public AudioClip dyingNoise;
     public AudioClip batteryGoingDown;
+    public AudioClip scream;
 
     [Header("Page System Settings")]
     public List<GameObject> pages = new List<GameObject>();
@@ -69,7 +70,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         // start consume flashlight battery
         StartCoroutine(RemoveBaterryCharge(removeBatteryValue, secondToRemoveBaterry));
-        //StartCoroutine(RemoveStaminaCharge(removeStaminaValue, secondToRemoveStamina));
+        StartCoroutine(StartHealPlayer(25, 30));
         StartCoroutine(FillStaminaCharge(fillStaminaValue, secondToRecargeStamina));
     }
 	
@@ -85,7 +86,7 @@ public class PlayerBehaviour : MonoBehaviour
         }
         else
         {
-            firstPersonController.m_RunSpeed = 4.5f;
+            firstPersonController.m_RunSpeed = 6f;
         }
 
         if (firstPersonController.m_IsWalking == false)
@@ -167,10 +168,10 @@ public class PlayerBehaviour : MonoBehaviour
             {
                 Debug.Log("Filling stamina value: " + value);
 
-                if (stamina >= 0 && stamina < staminaMax)
+                if (stamina >= -0.3f && stamina < staminaMax)
                     stamina += value;
-                else
-                    stamina = staminaMax;
+                //else
+                  //  stamina = staminaMax;
             }
         }
     }
@@ -249,6 +250,25 @@ public class PlayerBehaviour : MonoBehaviour
         {
             Debug.Log("You Found a Page: " + collider.gameObject.name + ", Press 'E' to pickup");
             pickUpUI.SetActive(true);      
+        }
+
+        if (collider.gameObject.transform.tag == "CreepyMan")
+        {
+            if (health <= 0)
+            {
+                Debug.Log("You're dead");
+                this.GetComponent<AudioSource>().PlayOneShot(dyingNoise);
+                paused = true;
+                inGameMenuUI.SetActive(true);
+                inGameMenuUI.transform.Find("ContinueBtn").gameObject.GetComponent<Button>().interactable = false;
+                inGameMenuUI.transform.Find("PlayAgainBtn").gameObject.GetComponent<Button>().interactable = true;
+            }
+            else
+            {
+                this.GetComponent<AudioSource>().PlayOneShot(damageNoise);
+                health -= 25;
+            }
+
         }
     }
 
