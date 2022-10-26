@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Flowerland.unity
     guid: 7c78dc9cd7c68c84e87e04a294871c82
   - enabled: 1
-    path: Assets/Scenes/MapHorror.unity
-    guid: 9be8e96d604efd64589820e535222728
+    path: Assets/Scenes/MapHorror/MapHorror.unity
+    guid: ea2aad48a65b6004fb1bd23d66da55de
   m_configObjects: {}

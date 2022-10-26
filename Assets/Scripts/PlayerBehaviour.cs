@@ -51,13 +51,16 @@ public class PlayerBehaviour : MonoBehaviour
     public GameObject finishedGameUI;
     public GameObject pagesCount;
     public bool paused;
-
-	void Start ()
+    string sceneName;
+    Scene currentScene;
+    void Start ()
     {
         // set initial health values
         health = healthMax;
         battery = batteryMax;
         stamina = staminaMax;
+        currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
 
         healthBar.GetComponent<Image>().fillAmount = health / healthMax;
 
@@ -105,10 +108,11 @@ public class PlayerBehaviour : MonoBehaviour
             Debug.Log("The flashlight battery is out and you are out of the light.");
             Flashlight.transform.Find("Spotlight").gameObject.GetComponent<Light>().intensity = 0.0f;
         }
+        
 
-        // page system
-        pagesCount.GetComponent<Text>().text = "Collected Flowers: " + collectedPages + "/8";
 
+           // pagesCount.GetComponent<Text>().text = "Collected Flowers: " + collectedPages + "/8";
+        
         //animations
         if (Input.GetKey(KeyCode.LeftShift))
             this.gameObject.GetComponent<Animation>().CrossFade("Run", 1);
