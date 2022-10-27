@@ -270,6 +270,7 @@ public class PlayerBehaviour : MonoBehaviour
             }
 
         }
+        
     }
 
     // page system - pickup system
