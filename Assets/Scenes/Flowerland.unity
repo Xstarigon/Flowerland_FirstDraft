@@ -5391,6 +5391,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: InGameMenuPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 9071350766671322120, guid: d5c65a035fe79ba40a5546beeace88af,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9071350766671322135, guid: d5c65a035fe79ba40a5546beeace88af,
         type: 3}
       propertyPath: m_LocalPosition.x

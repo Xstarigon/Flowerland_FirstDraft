@@ -51,17 +51,17 @@ public class PlayerBehaviour : MonoBehaviour
     public GameObject pickUpUI;
     public GameObject finishedGameUI;
     public GameObject pagesCount;
+    public Text pickupbattery;
     public bool paused;
-    string sceneName;
-    Scene currentScene;
+    Scene scene;
     void Start ()
     {
         // set initial health values
         health = healthMax;
         battery = batteryMax;
         stamina = staminaMax;
-        currentScene = SceneManager.GetActiveScene();
-        string sceneName = currentScene.name;
+        scene = SceneManager.GetActiveScene();
+        Debug.Log("Active Scene name is: " + scene.name + "\nActive Scene index: " + scene.buildIndex);
 
         healthBar.GetComponent<Image>().fillAmount = health / healthMax;
 
@@ -128,7 +128,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         }
         // collected all pages
-        if (collectedPages >= 192)
+        if (collectedPages == 5 && scene.buildIndex==2)
         {
             Debug.Log("You finished the game, congratulations...");
             Cursor.visible = true;
@@ -151,12 +151,12 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void RemoveStamina(float value)
     {
-        Debug.Log("Removing stamina value: " + value);
+       // Debug.Log("Removing stamina value: " + value);
 
         if (stamina > 0)
             stamina -= value;
-        else
-            Debug.Log("The stamina is out");
+       // else
+          //  Debug.Log("The stamina is out");
     }
 
     public IEnumerator FillStaminaCharge(float value, float time)
@@ -166,7 +166,7 @@ public class PlayerBehaviour : MonoBehaviour
             yield return new WaitForSeconds(time);
             if (firstPersonController.m_IsWalking == true)
             {
-                Debug.Log("Filling stamina value: " + value);
+             //   Debug.Log("Filling stamina value: " + value);
 
                 if (stamina >= -0.3f && stamina < staminaMax)
                     stamina += value;
@@ -236,8 +236,7 @@ public class PlayerBehaviour : MonoBehaviour
     // page system - show UI
     private void OnTriggerEnter(Collider collider)
     {
-        // start noise when reach slender
-        if (collider.gameObject.transform.tag == "Slender")
+        if (collider.gameObject.transform.tag == "CreepyMan")
         {
             if (health > 0 && paused == false)
             {
@@ -249,7 +248,15 @@ public class PlayerBehaviour : MonoBehaviour
         if (collider.gameObject.transform.tag == "Page")
         {
             Debug.Log("You Found a Page: " + collider.gameObject.name + ", Press 'E' to pickup");
-            pickUpUI.SetActive(true);      
+            pickUpUI.SetActive(true);
+            pickupbattery.text = "Press 'E' to pickup Page";
+        }
+        if (collider.gameObject.transform.tag == "Battery")
+        {
+            Debug.Log("You Found a Page: " + collider.gameObject.name + ", Press 'E' to pickup");
+            pickupbattery.text = "Press E to pick up battery";
+            pickUpUI.SetActive(true);
+            
         }
 
         if (collider.gameObject.transform.tag == "CreepyMan")
@@ -298,7 +305,7 @@ public class PlayerBehaviour : MonoBehaviour
     private void OnTriggerExit(Collider collider)
     {
         // remove noise sound
-        if (collider.gameObject.transform.tag == "Slender")
+        if (collider.gameObject.transform.tag == "CreepyMan")
         {
             if (health > 0 && paused == false)
             {

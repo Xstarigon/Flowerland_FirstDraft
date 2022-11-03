@@ -1,8 +1,8 @@
 {
     "fullscren": true,
     "textureQuality": 1,
-    "antialiasing": 1,
+    "antialiasing": 4,
     "vSync": 1,
-    "resolutionsIndex": 18,
-    "musicVolume": 0.09075760841369629
+    "resolutionsIndex": 0,
+    "musicVolume": 0.21883350610733033
 }
