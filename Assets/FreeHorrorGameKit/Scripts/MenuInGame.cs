@@ -21,7 +21,7 @@ public class MenuInGame : MonoBehaviour
     public Button applyButton;
     public Resolution[] resolutions;
     public GameSettings gameSettings;
-
+    public GameObject StoryUI;
     // Scene
     Scene m_Scene;
 
@@ -60,7 +60,10 @@ public class MenuInGame : MonoBehaviour
         // check if is main menu scene
         if (m_Scene.buildIndex == 0)
             return;
-
+        if (m_Scene.buildIndex == 1)
+        {
+            this.gameObject.GetComponent<PlayerBehaviour>().paused = true;
+        }
         // add options button listener
         Button btnOptions = MainCanvas.gameObject.transform.Find("InGameMenuPanel").transform.Find("SettingsBtn").gameObject.GetComponent<Button>();
         btnOptions.onClick.AddListener(Options);
@@ -139,6 +142,11 @@ public class MenuInGame : MonoBehaviour
         // close options UI
         MainCanvas.gameObject.transform.Find("InGameMenuPanel").gameObject.SetActive(true);
         OptionsUI.SetActive(false);
+    }
+    public void CloseStory()
+    {
+        StoryUI.SetActive(false);
+        this.gameObject.GetComponent<PlayerBehaviour>().paused = false;
     }
 
     public void StartGame()
