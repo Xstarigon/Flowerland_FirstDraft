@@ -205,12 +205,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "You arrived to the garden of the hospital, It is still beautiful as you
-    have last seen it years ago. It took a lot of courage for you to come here and
-    face \u2026 him. \u201CI wonder if he even remembers me\u2026\u201D you say to
-    yourself. \u201CHe has to, he probably hates you now\u201D. You blame yourself
-    for what you have done years ago. But you know you had to do it\u2026 you had
-    to put him here\u2026 him and his abilities, for his own good. "
+  m_Text: "Storyline: You arrived to the garden of the hospital, It is still beautiful
+    as you have last seen it years ago. It took a lot of courage for you to come
+    here and face \u2026 him. \u201CI wonder if he even remembers me\u2026\u201D
+    you say to yourself. \u201CHe has to, he probably hates you now\u201D. You blame
+    yourself for what you have done years ago. But you know you had to do it\u2026
+    you had to put him here\u2026 him and his abilities, for his own good. \n\nObjective:
+    Collect 8 flowers for your child"
 --- !u!222 &37295005
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -53,6 +53,7 @@ public class PlayerBehaviour : MonoBehaviour
     public GameObject pagesCount;
     public Text pickupbattery;
     public bool paused;
+    public GameObject StoryLine;
     Scene scene;
     void Start ()
     {
@@ -127,6 +128,12 @@ public class PlayerBehaviour : MonoBehaviour
             StartCoroutine(LoadLevelAfterDelay(3));
 
         }
+
+        if(collectedPages == 1 && scene.buildIndex == 2)
+        {
+            StoryLine.SetActive(false);
+        }
+
         // collected all pages
         if (collectedPages == 5 && scene.buildIndex==2)
         {
